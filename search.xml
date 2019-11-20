@@ -1,58 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>test</title>
-    <url>/2019/11/18/1/</url>
-    <content><![CDATA[<p>test</p>
-<a id="more"></a>]]></content>
-      <categories>
-        <category>xx</category>
-      </categories>
-      <tags>
-        <tag>yy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo</title>
-    <url>/2018/11/20/2/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3>]]></content>
-      <categories>
-        <category>code</category>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo-next</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo-NexT设置RSS</title>
-    <url>/2018/11/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <url>//df1e3ca1/</url>
+    <content><![CDATA[<ol>
+<li><a href="#hexo-next-v720集成rss">hexo-NexT-V7.2.0集成RSS</a><ol>
+<li><a href="#安装-hexo-插件需要在-hexo-项目根目录下进行安装">安装 hexo 插件，需要在 hexo 项目根目录下进行安装。</a></li>
+</ol>
+</li>
+<li><a href="#使用hexo-migrator-rss插件迁移文章">使用hexo-migrator-rss插件迁移文章</a></li>
+</ol>
+<h1 id="hexo-NexT-V7-2-0集成RSS"><a href="#hexo-NexT-V7-2-0集成RSS" class="headerlink" title="hexo-NexT-V7.2.0集成RSS"></a>hexo-NexT-V7.2.0集成RSS</h1><h2 id="安装-hexo-插件，需要在-hexo-项目根目录下进行安装。"><a href="#安装-hexo-插件，需要在-hexo-项目根目录下进行安装。" class="headerlink" title="安装 hexo 插件，需要在 hexo 项目根目录下进行安装。"></a>安装 hexo 插件，需要在 hexo 项目根目录下进行安装。</h2><p>插件地址：<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">https://github.com/hexojs/hexo-generator-feed</a></p>
+<p><code>npm install --save hexo-generator-feed</code></p>
+<p>安装完成后在项目根目录下的 _config.yml 配置文件的文末添加下面这段代码：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: http://hexo.io/plugins/</span><br><span class="line">plugins: hexo-generate-feed</span><br><span class="line"></span><br><span class="line"># type - Feed type. (atom/rss2)</span><br><span class="line"># path - Feed path. (Default: atom.xml/rss2.xml)</span><br><span class="line"># limit - Maximum number of posts in the feed (Use 0 or false to show all posts)</span><br><span class="line"># hub - URL of the PubSubHubbub hubs (Leave it empty if you don't use it)</span><br><span class="line"># content - (optional) set to 'true' to include the contents of the entire post in the feed.</span><br><span class="line"># content_limit - (optional) Default length of post content used in summary. Only used, if content setting is false and no custom post description present.</span><br><span class="line"># content_limit_delim - (optional) If content_limit is used to shorten post contents, only cut at the last occurrence of this delimiter before reaching the character limit. Not used by default.</span><br><span class="line"># order_by - Feed order-by. (Default: -date)</span><br><span class="line"># icon - (optional) Custom feed icon. Defaults to a gravatar of email specified in the main config.</span><br><span class="line"></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 10</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: 100</span><br><span class="line">  content_limit_delim: ' '</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: icon.png</span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>主题文件夹下的 _config.yml 配置文件中，找到 rss，设置为<code>rss:</code>(一般默认就是如此，可能不用修改)。</p>
+<div class="post-note">
+若未添加 feed及feed下的所有选项，那么需要按照以下设置：
+</div>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>在主题文件夹下的 _config.yml 配置文件中，找到 rss ，在后面加上 /atom.xml。如下图所示：</p>
+<div class="post-note">
+(这样设置后，RSS中content中将显示文章全文，这样的隐患是极大便利了订阅者可通过插件 or 脚本直接抓取你所有文章的全文，对你而言，你的文章跟容易被抄袭)。所以强烈建议设置feed的limit和content_limit选项。
+</div>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/juejian/mblog_imgs/master/imgs/20190729125912.png" alt=""></p>
+<p>重启服务，刷新页面可以看到如下效果图：</p>
+<p><img src="https://raw.githubusercontent.com/juejian/mblog_imgs/master/imgs/20190729125944.png" alt=""></p>
+<h1 id="使用hexo-migrator-rss插件迁移文章"><a href="#使用hexo-migrator-rss插件迁移文章" class="headerlink" title="使用hexo-migrator-rss插件迁移文章"></a>使用hexo-migrator-rss插件迁移文章</h1><p>首先，安装 <code>hexo-migrator-rss</code> 插件。</p>
+<p><code>$ npm install hexo-migrator-rss --save</code></p>
+<p>安装过程可能出现markdown转化工具依赖包过时，需更新turndown。</p>
+<p>执行<code>npm install turndown</code>安装即可。</p>
+<p>turndown主页：<a href="https://github.com/juejian/turndown" target="_blank" rel="noopener">https://github.com/juejian/turndown</a></p>
+<p>插件安装完成后，执行下列命令，从 <code>RSS</code> 迁移所有文章。<code>source</code> 可以是文件路径或网址。</p>
+<p><code>$ hexo migrate rss &lt;source&gt;</code></p>
+<div class="post-note">
+注：只有source地址中的所有文章显示为全文时，才能完整的迁移所有的文章的完整内容，否则只能得到每篇文章的摘要 or 前 N 个字。
+</div>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
-        <category>code</category>
+        <category>代码托管</category>
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo-next</tag>
         <tag>hexo</tag>
+        <tag>hexo-NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo测试3</title>
+    <url>//6aa626d4/</url>
+    <content><![CDATA[<p>本文下面主要先介绍 Hexo 博客和 Next 主题的搭建，如果你已经搭建好了博客框架.</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<p>本文下面主要先介绍 Hexo 博客和 Next 主题的搭建，如果你已经搭建好了博客框架，但是想进一步地修改博客样式，可以直接跳转到最下面优化定制部分😄，本文参考的博客链接也会直接在文中插入或者在文末标明，如果有遗漏，欢迎指出。</p>
+<h1 id="一级http"><a href="#一级http" class="headerlink" title="一级http"></a>一级http</h1><blockquote>
+<p>本教程只适用于 Next5 或者 Next6 主题，Next7 开始做了大量修改，并删除了 custom.styl 文件，同时增加了很多在 Next7 之前需要手动配置的功能，请随个人喜好进行版本选择。</p>
+</blockquote>
+<div class="note warning">本教程只适用于 Next5 或者 Next6 主题，Next7 开始做了大量修改，并删除了 custom.styl 文件，同时增加了很多在 Next7 之前需要手动配置的功能，请随个人喜好进行版本选择。</div>
+
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>hexo</category>
+        <category>next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo测试</title>
+    <url>//196c5604/</url>
+    <content><![CDATA[<p>本文下面主要先介绍 Hexo 博客和 Next 主题的搭建，如果你已经搭建好了博客框架.</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<p>本文下面主要先介绍 Hexo 博客和 Next 主题的搭建，如果你已经搭建好了博客框架，但是想进一步地修改博客样式，可以直接跳转到最下面优化定制部分😄，本文参考的博客链接也会直接在文中插入或者在文末标明，如果有遗漏，欢迎指出。</p>
+<h1 id="一级http"><a href="#一级http" class="headerlink" title="一级http"></a>一级http</h1><blockquote>
+<p>本教程只适用于 Next5 或者 Next6 主题，Next7 开始做了大量修改，并删除了 custom.styl 文件，同时增加了很多在 Next7 之前需要手动配置的功能，请随个人喜好进行版本选择。</p>
+</blockquote>
+<div class="note warning">本教程只适用于 Next5 或者 Next6 主题，Next7 开始做了大量修改，并删除了 custom.styl 文件，同时增加了很多在 Next7 之前需要手动配置的功能，请随个人喜好进行版本选择。</div>
+
+<div class="note info">我的个人博客就是使用 Hexo 博客框架 + Next 主题搭建而来的，之前也使用过 CSDN、博客园等，最后都放弃了，一方面是因为广告多，另外一方面样式我也不是很喜欢，而如果自己从零开始写博客源代码的话，比较复杂而且麻烦。后来偶然看到了 hexo 博客框架，并经过推荐使用了 Next 主题，这才正式入了 hexo 博客的坑！不得不说 Next 主题能够魔改并且自身集成了很多优秀的第三方插件是这款主题具有如此强大活力的根本原因😘。</div>
+
+<div class="note danger">安装之前需要说明几个注意事项：<br><br>- 很多命令既可以使用 windows 的 cmd 命令行来完成，也可以使用刚才安装好的 Git 命令行工具 Git Bash 来完成，但是在 cmd 中部分命令会出现一些问题，建议只使用 Git Bash 来执行命令。<br>- Hexo 不同版本之间有差别，要注意自己安装的版本是哪个版本（跟着本文走就没问题啦），如果修改样式的话注意网上教程的 Hexo 版本差异。<br>- Hexo 安装好后有 2 种<code>_config.xml</code>文件，一个是 hexo 站点根目录下的全局<code>_config.xml</code>文件，还有一种是每个主题 theme 下的各自的<code>_config.xml</code>文件，注意区分二者，后面会详细说到。<br><br></div>
+
+<p>本文下面主要先介绍 Hexo 博客和 Next 主题的搭建，如果你已经搭建好了博客框架，但是想进一步地修改博客样式，可以直接跳转到最下面优化定制部分😄，本文参考的博客链接也会直接在文中插入或者在文末标明，如果有遗漏，欢迎指出。</p>
+<h2 id="二级cest"><a href="#二级cest" class="headerlink" title="二级cest"></a>二级cest</h2><p>== 测试mark == 本文参考的博客链接也会直接在文中插入或者在文末标明. <code>string s = 'hello'</code>;</p>
+<p><a href="http://localhost:4000/df1e3ca1/" target="_blank" rel="noopener">超链接</a></p>
+<h3 id="三级oop"><a href="#三级oop" class="headerlink" title="三级oop"></a>三级oop</h3><p><img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=158335357,1802260862&amp;fm=26&amp;gp=0.jpg" alt="测试图片"></p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="comment">#tags: /tags/ || tags</span></span><br><span class="line">  <span class="comment">#categories: /categories/ || th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable/Disable menu icons.</span></span><br><span class="line"><span class="attr">menu_icons:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span>  <span class="comment">#表示是否显示菜单图标icons</span></span><br><span class="line">  <span class="attr">badges:</span> <span class="literal">false</span>  <span class="comment"># 显示每个菜单下面有多少个内容</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="四级"><a href="#四级" class="headerlink" title="四级"></a>四级</h4><p>测试四级标题</p>
+<h5 id="5级"><a href="#5级" class="headerlink" title="5级"></a>5级</h5><p>此此VB</p>
+<h6 id="6级"><a href="#6级" class="headerlink" title="6级"></a>6级</h6><h1 id="一级gdp"><a href="#一级gdp" class="headerlink" title="一级gdp"></a>一级gdp</h1><p>可以直接跳转到最下面优化定制部分😄，本文参考的博客链接也会直接在文中插入或者在文末标明，如果有遗漏，欢迎指出。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>hexo</category>
+        <category>next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
       </tags>
   </entry>
 </search>
